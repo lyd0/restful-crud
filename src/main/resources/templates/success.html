@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+success:===
+    <div th:id="${hello}" th:text="${hello}"></div>
+        <div th:class="${hello}" th:utext="${hello}"></div>
+    <li th:text="${item}" th:each="item: ${list}"></li>
+    <span th:each="a:${list}">[[${a}]]</span>
+</body>
+</html>
