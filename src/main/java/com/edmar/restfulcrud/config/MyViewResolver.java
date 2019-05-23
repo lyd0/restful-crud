@@ -17,6 +17,7 @@ public class MyViewResolver extends WebMvcConfigurerAdapter {
         registry.addViewController("/").setViewName("index");
         registry.addViewController("/index").setViewName("index");
         registry.addViewController("/index.html").setViewName("index");
+        registry.addViewController("/main").setViewName("dashboard");
         registry.addViewController("/main.html").setViewName("dashboard");
     }
 
