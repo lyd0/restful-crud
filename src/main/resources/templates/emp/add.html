@@ -53,7 +53,14 @@
         <nav th:replace="~{commons/bar::sidebar(activeUri='emps')}"></nav>
 
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+<!--            需要区分修改还是添加-->
+<!--            发送put请求修改数据-->
+<!--            1.SpringMvc配置中的HiddenHttpMethodFilter-->
+<!--            2.页面创建一个post name=_method,值就是请求方式-->
             <form th:action="@{/emp}" method="post">
+                <input type="hidden" name="_method" value="put" th:if="${emp!=null}">
+<!--                修改的时候需要传ID-->
+                <input type="hidden" name="id" th:if="${emp!=null}" th:value="${emp.id}">
                 <div class="form-group">
                     <label>LastName</label>
                     <input name="lastName" type="text" class="form-control" placeholder="LastName" th:value="${emp!=null}?${emp.lastName}" >
@@ -85,7 +92,7 @@
                     <input name="birth" type="text" class="form-control" th:value="${emp!=null}?${#dates.format(emp.birth,'yyyy/MM/dd mm:ss')}">
                 </div>
                 <div class="form-group">
-                    <button class="btn btn-sm btn-primary">添加</button>
+                    <button class="btn btn-sm btn-primary" th:text="${emp==null?'添加':'修改'}"></button>
                 </div>
 
             </form>

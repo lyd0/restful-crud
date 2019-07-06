@@ -5,12 +5,11 @@ import com.edmar.restfulcrud.dao.DepartmentDao;
 import com.edmar.restfulcrud.dao.EmployeeDao;
 import com.edmar.restfulcrud.entities.Department;
 import com.edmar.restfulcrud.entities.Employee;
+import com.edmar.restfulcrud.exception.UserNotFound;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
 
@@ -55,9 +54,35 @@ public class EmployeeController {
     public String toEditPage(@PathVariable Integer id,Model model) {
         Employee employee = employeeDao.get(id);
         model.addAttribute("emp",employee);
-        System.out.println(employee);
+        System.out.println("GET: " + employee);
         Collection<Department> depts = departmentDao.getDepartments();
         model.addAttribute("depts",depts);
         return "emp/add";
+    }
+
+    //员工修改
+    @PutMapping("/emp")
+    public String updateEmpoyee(Employee employee) {
+        System.out.println("Update: "+employee);
+        employeeDao.save(employee);
+        return "redirect:/emps";
+    }
+
+    //删除
+    @DeleteMapping("/emp/{id}")
+    public String deleteEmployee(@PathVariable("id") Integer id) {
+        employeeDao.delete(id);
+        return "redirect:/emps";
+    }
+
+    @GetMapping("/testException/{pram}")
+    @ResponseBody
+    public String testException(@PathVariable("pram") String pram) {
+        System.out.println(pram);
+        if(pram.equals("aaa")) {
+            System.out.println("p::::::::"+pram);
+            throw new UserNotFound();
+        }
+        return "success";
     }
 }

@@ -178,7 +178,16 @@
 				</nav>
 
 				<main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-					<h1>404</h1>
+					<h1>status:[[${status}]]</h1>
+
+					<h1>timestamp:</h1>
+					[[${#dates.format(timestamp,'yyyy/MM/dd mm:ss')}]]
+					<h1>exception:</h1>
+					[[${exception}]]
+					<h1>message:</h1>
+					[[${message}]]
+					<h1>errors</h1>
+					[[${errors}]]
 				</main>
 			</div>
 		</div>

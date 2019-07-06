@@ -10,12 +10,12 @@ public class LoginHandlerInterceptor implements HandlerInterceptor {
     //登录检查
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        Object user = request.getSession().getAttribute("loginUser");
-        if(user == null) {
-            request.setAttribute("msg","未登录！！！");
-            request.getRequestDispatcher("/index.html").forward(request,response);
-            return false;
-        }
+//        Object user = request.getSession().getAttribute("loginUser");
+//        if(user == null) {
+//            request.setAttribute("msg","未登录！！！");
+//            request.getRequestDispatcher("/index.html").forward(request,response);
+//            return false;
+//        }
         return true;
 
     }
