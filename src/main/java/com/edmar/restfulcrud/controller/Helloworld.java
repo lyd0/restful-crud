@@ -1,11 +1,9 @@
 package com.edmar.restfulcrud.controller;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.util.Arrays;
@@ -29,5 +27,14 @@ public class Helloworld {
         }
         map.put("msg","用户名或密码错误");
         return "index";
+    }
+
+    @Value("${myaa}")
+    String myaa = "myaa..";
+
+    @GetMapping("/aaa")
+    @ResponseBody
+    public String getProperties() {
+        return myaa;
     }
 }
